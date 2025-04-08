@@ -26,11 +26,12 @@ services:
   nginx:
     image: nginx:alpine
     restart: always
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./wp-content:/var/www/html/wp-content
     depends_on:
       - wordpress
+    volumes:
+      # Only mount nginx.conf if it exists and is valid
+      # - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./wp-content:/var/www/html/wp-content
 
 volumes:
   db_data:
